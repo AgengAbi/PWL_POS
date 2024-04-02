@@ -1,4 +1,46 @@
-<!DOCTYPE html>
+@extends('layout.app')
+{{-- Customize layout sections --}}
+@section('subtitle', 'User')
+@section('content_header_title', 'User')
+@section('content_header_subtitle', 'Create')
+{{-- Content body: main page content --}}
+@section('content')
+    <div class="card card-primary">
+        <div class="card-header">
+            <h3 class="card-title">Form Tambah Data User</h3>
+        </div>
+        <!-- /.card-header -->
+        <!-- form start -->
+        <form>
+            <div class="card-body">
+                <div class="form-group">
+                    <label for="username">Username</label>
+                    <input type="text" name="username" class="form-control" id="username" placeholder="Masukan Username">
+                </div>
+                <div class="form-group">
+                    <label for="nama">Nama</label>
+                    <input type="text" name="nama" class="form-control" id="nama" placeholder="Masukan nama">
+                </div>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" name="password" class="form-control" id="password" placeholder="Password">
+                </div>
+                <div class="form-group">
+                    <label for="level_id">Level_id</label>
+                    <input type="number" name="level_id" class="form-control" id="level_id" placeholder="Level ID">
+                </div>
+            </div>
+            <!-- /.card-body -->
+
+            <div class="card-footer">
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </div>
+        </form>
+    </div>
+@endsection
+
+
+{{-- <!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -32,4 +74,4 @@
     </form>
 </body>
 
-</html>
+</html> --}}

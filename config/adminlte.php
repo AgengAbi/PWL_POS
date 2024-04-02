@@ -326,6 +326,16 @@ return [
             'url' => '/kategori',
             'icon' => 'fa fa-th',
         ],
+        [
+            'text' => 'User',
+            'url' => '/user',
+            'icon' => 'fa fa-users',
+        ],
+        [
+            'text' => 'Level',
+            'url' => '/level',
+            'icon' => 'fa fa-unlock-alt',
+        ],
         // [
         //     'text' => 'pages',
         //     'url' => 'admin/pages',
