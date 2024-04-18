@@ -3,16 +3,24 @@
 namespace App\Models;
 
 use App\DataTables\KategoriDataTable;
+use Illuminate\Database\Eloquent\Factories\BelongsToRelationship;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class BarangModel extends Model
 {
-    protected $model = 'm_barang';
+    protected $table = 'm_barang';
     protected $primaryKey = 'barang_id';
+    protected $fillable = ['barang_kode', 'barang_nama', 'kategori_id', 'harga_beli', 'harga_jual'];
     // use HasFactory;
-    public function index(KategoriDataTable $dataTables)
+    public function index(BarangModel $dataTables)
     {
         return $dataTables->render('kategori.index');
+    }
+
+    public function kategori(): BelongsTo
+    {
+        return $this->belongsTo(KategoriModel::class, 'kategori_id', 'kategori_id');
     }
 }
