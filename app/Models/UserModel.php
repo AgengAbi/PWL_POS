@@ -12,6 +12,16 @@ class UserModel extends Authenticatable
 {
     use HasFactory;
 
+    public function getJWTIdentifier()
+    {
+        return $this->getKey();
+    }
+
+    public function getJWTCustomClaims()
+    {
+        return [];
+    }
+
     protected $table = 'm_user';        // Mendefinisiakn nama tabel yang digunakan oleh model ini
     protected $primaryKey = 'user_id';  // Mendefinisikan primary key dari tabel yang digunakan
     public $timestamps = false;
