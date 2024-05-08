@@ -15,7 +15,7 @@ class StokSeeder extends Seeder
     {
         $data = [];
         $userIds = DB::table('m_user')->pluck('user_id');
-        for ($i = 0; $i < 10; $i++) {
+        for ($i = 1; $i < 10; $i++) {
             $data[] = [
                 'barang_id' => $i,
                 'user_id' => $userIds->random(),
