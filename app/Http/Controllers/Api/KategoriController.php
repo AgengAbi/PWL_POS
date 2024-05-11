@@ -20,7 +20,7 @@ class KategoriController extends Controller
         return response()->json($id, 201);
     }
 
-    public function show(KategoriModel $id)
+    public function show($id)
     {
         return KategoriModel::find($id);
     }
@@ -31,12 +31,14 @@ class KategoriController extends Controller
         return KategoriModel::find($id);
     }
 
-    public function destroy(KategoriModel $user)
+    public function destroy($id)
     {
-        $user->delete();
+        $ktg = KategoriModel::find($id);
+        $ktg->delete();
 
         return response()->json([
             'success' => true,
+            'data' => $ktg,
             'message' => 'Data terhapus',
         ]);
     }

@@ -32,12 +32,14 @@ class BarangController extends Controller
         return BarangModel::find($id);
     }
 
-    public function destroy(BarangModel $user)
+    public function destroy($id)
     {
-        $user->delete();
+        $brg = BarangModel::find($id);
+        $brg->delete();
 
         return response()->json([
             'success' => true,
+            'data' => $brg,
             'message' => 'Data terhapus',
         ]);
     }

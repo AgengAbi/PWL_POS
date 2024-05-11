@@ -20,23 +20,26 @@ class UserController extends Controller
         return response()->json($id, 201);
     }
 
-    public function show(UserModel $id)
+    public function show($id)
     {
         return UserModel::find($id);
     }
 
-    public function update(Request $request, UserModel $id)
+    public function update(Request $request, $id)
     {
-        $id->update($request->all());
+        $user = UserModel::find($id);
+        $user->update($request->all());
         return UserModel::find($id);
     }
 
-    public function destroy(UserModel $user)
+    public function destroy($id)
     {
+        $user = UserModel::find($id);
         $user->delete();
 
         return response()->json([
             'success' => true,
+            'data' => $user,
             'message' => 'Data terhapus',
         ]);
     }
