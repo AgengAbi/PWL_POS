@@ -55,9 +55,12 @@ class BarangController extends Controller
             'title' => 'Tambah Barang Baru'
         ];
 
+        $itemCounts = BarangModel::count() + 1;
+        $newCode = "BRG" . $itemCounts;
+
         $kategori = KategoriModel::all(); //ambil data untuk ditampilkan di form
         $activeMenu = 'barang';
-        return view('barangs.create', ['breadcrumb' => $breadcrumb, 'page' => $page, 'kategori' => $kategori, 'activeMenu' => $activeMenu]);
+        return view('barangs.create', ['breadcrumb' => $breadcrumb, 'page' => $page, 'kategori' => $kategori, 'activeMenu' => $activeMenu, 'newCode' => $newCode]);
     }
     public function store(Request $request): RedirectResponse
     {
@@ -67,13 +70,19 @@ class BarangController extends Controller
             'kategori_id' => 'required|integer',
             'harga_beli' => 'required|integer',
             'harga_jual' => 'required|integer',
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
+        // Handle the file upload
+        $image = $request->file('image');
+        $imagePath = $image->store('images', 'public');
+        // create
         BarangModel::create([
             'barang_kode' => $request->barang_kode,
             'barang_nama' => $request->barang_nama,
             'kategori_id' => $request->kategori_id,
             'harga_beli' => $request->harga_beli,
             'harga_jual' => $request->harga_jual,
+            'image' => $imagePath,
         ]);
 
         return redirect('/barang')->with('success', 'Data barang berhasil disimpan');

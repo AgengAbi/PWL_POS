@@ -33,6 +33,14 @@ class BarangController extends Controller
             return response()->json($validator->errors(), 422);
         };
 
+        // Handle the file upload
+        $image = $request->file('image');
+        $imagePathWPost = $image->store('images', 'public');
+        $imagePath = str_replace('posts/', '', $imagePathWPost);
+        // \Log::info('path yang dihasilkan: ', $imagePathWPost);
+        // \Log::info('path yang dihasilkan: ', $imagePath);
+
+
         // create Barang
         $brg = BarangModel::create([
             'kategori_id' => $request->kategori_id,
@@ -40,7 +48,7 @@ class BarangController extends Controller
             'barang_nama' => $request->barang_nama,
             'harga_beli' => $request->harga_beli,
             'harga_jual' => $request->harga_jual,
-            'image' => $request->image->hashName(),
+            'image' => $imagePath,
         ]);
 
         // return response JSON user is created
